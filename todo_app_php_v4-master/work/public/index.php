@@ -1,9 +1,10 @@
 <?php
 
+session_start();
+
 define('DSN', 'mysql:host=db;dbname=myapp;charset=utf8mb4');
 define('DB_USER', 'myappuser');
 define('DB_PASS', 'myapppass');
-// define('SITE_URL', 'http://localhost:8562');
 define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
 try {
@@ -25,6 +26,23 @@ try {
 function h($str)
 {
 	return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
+function createToken()
+{
+	if (!isset($_SESSION['token'])) {
+		$_SESSION['token'] = bin2hex(random_bytes(32));
+	}
+}
+
+function validateToken()
+{
+	if (
+		empty($_SESSION['token']) ||
+		$_SESSION['token'] !== filter_input(INPUT_POST, 'token')
+	) {
+		exit('Invalid post request');
+	}
 }
 
 function addTodo($pdo)
