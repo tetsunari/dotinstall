@@ -1,11 +1,8 @@
 <?php
 
-session_start();
+require_once(__DIR__ . '/../app/config.php');
 
-define('DSN', 'mysql:host=db;dbname=myapp;charset=utf8mb4');
-define('DB_USER', 'myappuser');
-define('DB_PASS', 'myapppass');
-define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+createToken();
 
 try {
 	$pdo = new PDO(
@@ -65,6 +62,7 @@ function getTodos($pdo)
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	validateToken();
 	addTodo($pdo);
 
 	header('Location: ' . SITE_URL);
@@ -86,6 +84,7 @@ $todos = getTodos($pdo);
 
 <form action="" method="post">
 	<input type="text" name="title" placeholder="Type new todo.">
+	<input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
 </form>
 
 <ul>
