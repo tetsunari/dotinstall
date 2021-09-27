@@ -2,37 +2,11 @@
 
 require_once(__DIR__ . '/../app/config.php');
 
-Token::create();
-
 $pdo = Database::getInstance();
 
 $todo = new Todo($pdo);
 $todo->processPost();
 $todos = $todo->getAll();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	Token::validate();
-	$action = filter_input(INPUT_GET, 'action');
-
-	switch ($action) {
-		case 'add':
-			addTodo($pdo);
-			break;
-		case 'toggle':
-			toggleTodo($pdo);
-			break;
-		case 'delete':
-			deleteTodo($pdo);
-			break;
-		default:
-			exit;
-	}
-
-	header('Location: ' . SITE_URL);
-	exit;
-}
-
-$todos = getTodos($pdo);
 
 ?>
 <!DOCTYPE html>
