@@ -8,6 +8,7 @@ define('DB_PASS', 'myapppass');
 define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
 spl_autoload_register(function ($class) {
+	// MyApp\Database
 	$fileName = sprintf(__DIR__ . '/%s.php', $class);
 
 	if (file_exists($fileName)) {
