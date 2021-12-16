@@ -1,5 +1,7 @@
 <?php
 
+namespace MyApp;
+
 class Database
 {
 	private static $instance;
