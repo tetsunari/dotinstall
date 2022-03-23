@@ -1,21 +1,13 @@
 'use strict';
 
 {
-    let x = 1;
-    let y = x;
-    x = 5;
-    console.log(x); // 5
-    console.log(y); // 1
+    const str = 'hello';
 
-    let i = [1, 2];
-    let j = i;
-    i[0] = 5;
-    console.log(i); // [5, 2]
-    console.log(j); // [5, 2]
+    console.log(str.length);
 
-    let a = [1, 2];
-    let b = [...a];
-    a[0] = 5;
-    console.log(a); // [5, 2]
-    console.log(b); // [1, 2]
+    // str.substring(開始位置, 終了位置);
+    console.log(str.substring(2, 4));
+
+    console.log(str[1]);
+    // str[1] = 'a';    配列ではないので、とはできない
 }
