@@ -1,20 +1,21 @@
 'use strict';
 
 {
-    const point = {
-        x: 100,
-        y: 180,
-    };
+    let x = 1;
+    let y = x;
+    x = 5;
+    console.log(x); // 5
+    console.log(y); // 1
 
-    const keys = Object.keys(point);
-    keys.forEach(key => {
-      console.log(`Key: ${key} Value: ${point[key]}`);
-    });
+    let i = [1, 2];
+    let j = i;
+    i[0] = 5;
+    console.log(i); // [5, 2]
+    console.log(j); // [5, 2]
 
-    const points = [
-        {x: 30, y: 20},
-        {x: 10, y: 50},
-        {x: 40, y: 40},
-    ];
-    console.log(points[1].y);
+    let a = [1, 2];
+    let b = [...a];
+    a[0] = 5;
+    console.log(a); // [5, 2]
+    console.log(b); // [1, 2]
 }
