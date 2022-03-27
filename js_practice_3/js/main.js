@@ -15,6 +15,12 @@
             this.likeCount++;
             this.show();
         }
+
+        // 静的メソッド
+        // thisは使えない
+        static showInfo() {
+            console.log('Post class version 1.0');
+        }
     }
 
     const posts = [
@@ -22,13 +28,7 @@
         new Post('プログラミング楽しい！'),
     ];
 
-    posts[0].like();
-    // posts[0].likeCount++;
-    // posts[0].likeCount++;
-    // posts[0].likeCount++;
-    // posts[0].likeCount++;
-    // 上記の書き方は非推奨（プロバティの操作）
+    // posts[0].like();
 
-    // posts[0].show();
-    // posts[1].show();
+    Post.showInfo();
 }
